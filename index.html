@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ReviewPulse AI — Review Intelligence Dashboard</title>
+
+  <!-- Modern font + icons + charts via CDN -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.3/dist/chart.umd.min.js"></script>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="app-shell">
+    <!-- Collapsible sidebar -->
+    <aside class="sidebar" id="sidebar">
+      <div class="brand">
+        <div class="brand-logo"><i class="fa-solid fa-wave-square"></i></div>
+        <div class="brand-copy">
+          <h1>ReviewPulse AI</h1>
+          <span>Customer intelligence</span>
+        </div>
+        <button class="sidebar-toggle" id="sidebarToggle" aria-label="Collapse sidebar">
+          <i class="fa-solid fa-chevron-left"></i>
+        </button>
+      </div>
+
+      <nav class="nav-list">
+        <a class="nav-item active" href="#overview"><i class="fa-solid fa-grid-2"></i><span class="nav-label">Overview</span></a>
+        <a class="nav-item" href="#urgent"><i class="fa-regular fa-comments"></i><span class="nav-label">All Reviews</span></a>
+        <a class="nav-item" href="#products"><i class="fa-solid fa-box"></i><span class="nav-label">Products</span></a>
+        <a class="nav-item" href="#sentiment"><i class="fa-solid fa-chart-pie"></i><span class="nav-label">Sentiment Analysis</span></a>
+        <a class="nav-item" href="#issues"><i class="fa-solid fa-triangle-exclamation"></i><span class="nav-label">Topics & Issues</span></a>
+        <a class="nav-item" href="#recommendations"><i class="fa-solid fa-wand-magic-sparkles"></i><span class="nav-label">AI Insights</span></a>
+        <a class="nav-item" href="#urgent"><i class="fa-solid fa-reply"></i><span class="nav-label">Response Center</span></a>
+        <a class="nav-item" href="#integrations"><i class="fa-solid fa-plug"></i><span class="nav-label">Integrations</span></a>
+        <a class="nav-item" href="#activity"><i class="fa-regular fa-file-lines"></i><span class="nav-label">Reports</span></a>
+        <a class="nav-item" href="#settings"><i class="fa-solid fa-gear"></i><span class="nav-label">Settings</span></a>
+      </nav>
+
+      <div class="sidebar-bottom">
+        <div class="plan-card">
+          <small>Current plan</small>
+          <strong>Pro Plan</strong>
+          <small>12,486 of 25,000 reviews analysed</small>
+        </div>
+        <div class="user-mini">
+          <div class="avatar">AM</div>
+          <div class="profile-copy">
+            <strong>Alex Morgan</strong>
+            <span>Brand Manager</span>
+          </div>
+        </div>
+      </div>
+    </aside>
+
+    <main class="main" id="main">
+      <!-- Top navigation -->
+      <header class="topbar">
+        <button class="mobile-menu" id="mobileMenu"><i class="fa-solid fa-bars"></i></button>
+        <div class="page-title">
+          <h2>Review Intelligence Dashboard</h2>
+          <p>Monitor customer feedback across every sales channel</p>
+        </div>
+
+        <div class="top-actions">
+          <div class="search-wrap">
+            <i class="fa-solid fa-magnifying-glass"></i>
+            <input class="control search-input" id="globalSearch" placeholder="Search reviews, products or issues">
+          </div>
+          <select class="control" id="dateFilter">
+            <option>Last 7 days</option>
+            <option selected>Last 30 days</option>
+            <option>Last 90 days</option>
+          </select>
+          <select class="control" id="platformFilter">
+            <option selected>All Platforms</option>
+            <option>Amazon</option>
+            <option>Flipkart</option>
+            <option>Shopify</option>
+            <option>Myntra</option>
+          </select>
+          <button class="btn btn-primary" id="exportBtn"><i class="fa-solid fa-download"></i><span>Export Report</span></button>
+          <button class="icon-btn" id="darkToggle" title="Toggle dark mode"><i class="fa-regular fa-moon"></i></button>
+          <button class="icon-btn"><i class="fa-regular fa-bell"></i><span class="dot"></span></button>
+          <div class="avatar">AM</div>
+        </div>
+      </header>
+
+      <div class="content" id="overview">
+        <!-- Executive summary -->
+        <section class="card ai-summary">
+          <div class="ai-orb"><i class="fa-solid fa-sparkles"></i></div>
+          <div>
+            <h3>AI Executive Summary</h3>
+            <p>Customer sentiment improved by 8.4% this month. Product quality complaints decreased, but delivery and packaging issues increased. Wireless Earbuds X1 requires immediate attention due to a rise in one-star reviews.</p>
+            <div class="ai-meta"><i class="fa-regular fa-clock"></i> Generated 5 minutes ago</div>
+          </div>
+          <button class="btn btn-secondary" id="detailsBtn">View Detailed Insights</button>
+        </section>
+
+        <!-- KPIs -->
+        <section class="kpi-grid">
+          <article class="card kpi">
+            <div class="kpi-top"><div class="kpi-icon"><i class="fa-regular fa-comments"></i></div><div class="sparkline"></div></div>
+            <div class="label">Total Reviews</div><div class="value">12,486</div>
+            <div class="kpi-bottom"><span class="up"><i class="fa-solid fa-arrow-trend-up"></i> 18.2%</span><span>vs previous period</span></div>
+          </article>
+          <article class="card kpi">
+            <div class="kpi-top"><div class="kpi-icon"><i class="fa-solid fa-star"></i></div><div class="sparkline"></div></div>
+            <div class="label">Average Rating</div><div class="value">4.2 <small style="font-size:12px;color:var(--muted)">/ 5</small></div>
+            <div class="kpi-bottom"><span class="up"><i class="fa-solid fa-arrow-up"></i> 0.3</span><span>vs previous period</span></div>
+          </article>
+          <article class="card kpi">
+            <div class="kpi-top"><div class="kpi-icon" style="color:var(--green);background:rgba(22,163,74,.1)"><i class="fa-regular fa-face-smile"></i></div><div class="sparkline" style="border-color:var(--green)"></div></div>
+            <div class="label">Positive Sentiment</div><div class="value">68%</div>
+            <div class="kpi-bottom"><span class="up"><i class="fa-solid fa-arrow-trend-up"></i> 6.4%</span><span>vs previous period</span></div>
+          </article>
+          <article class="card kpi">
+            <div class="kpi-top"><div class="kpi-icon" style="color:var(--red);background:rgba(220,38,38,.1)"><i class="fa-regular fa-face-frown"></i></div><div class="sparkline" style="border-color:var(--green)"></div></div>
+            <div class="label">Negative Reviews</div><div class="value">1,248</div>
+            <div class="kpi-bottom"><span class="down-good"><i class="fa-solid fa-arrow-down"></i> 4.1%</span><span>vs previous period</span></div>
+          </article>
+          <article class="card kpi">
+            <div class="kpi-top"><div class="kpi-icon" style="color:var(--amber);background:rgba(217,119,6,.1)"><i class="fa-regular fa-clock"></i></div><div class="sparkline" style="border-color:var(--amber)"></div></div>
+            <div class="label">Pending Responses</div><div class="value">326</div>
+            <div class="kpi-bottom"><span class="warn"><i class="fa-solid fa-circle-exclamation"></i> 48 urgent</span><span>needs attention</span></div>
+          </article>
+        </section>
+
+        <!-- Trend and sentiment -->
+        <section class="dashboard-grid">
+          <article class="card chart-card">
+            <div class="section-head">
+              <div><h3>Review Volume & Sentiment Trend</h3><p>Total reviews and sentiment movement</p></div>
+              <div class="filter-tabs" id="trendTabs">
+                <button class="tab-btn" data-days="7">7 days</button>
+                <button class="tab-btn active" data-days="30">30 days</button>
+                <button class="tab-btn" data-days="90">90 days</button>
+              </div>
+            </div>
+            <div class="chart-box"><canvas id="trendChart"></canvas></div>
+          </article>
+
+          <article class="card chart-card" id="sentiment">
+            <div class="section-head"><div><h3>Sentiment Distribution</h3><p>Across 12,486 reviews</p></div></div>
+            <div class="sentiment-wrap">
+              <div class="sentiment-chart-box"><canvas id="sentimentChart"></canvas></div>
+              <div>
+                <div class="legend-row"><span class="legend-label"><span class="legend-dot" style="background:var(--green)"></span>Positive</span><strong>68%</strong></div>
+                <div class="legend-row"><span class="legend-label"><span class="legend-dot" style="background:var(--amber)"></span>Neutral</span><strong>20%</strong></div>
+                <div class="legend-row"><span class="legend-label"><span class="legend-dot" style="background:var(--red)"></span>Negative</span><strong>12%</strong></div>
+                <div style="margin-top:18px;color:var(--muted);font-size:11px;">Total analysed</div>
+                <div style="font-size:25px;font-weight:800;margin-top:3px;">12,486</div>
+              </div>
+            </div>
+          </article>
+        </section>
+
+        <!-- Platforms and issues -->
+        <section class="second-grid">
+          <article class="card platform-card">
+            <div class="section-head"><div><h3>Reviews by Platform</h3><p>Distribution by sales channel</p></div></div>
+            <div id="platformRows"></div>
+          </article>
+
+          <article class="card issues-card" id="issues">
+            <div class="section-head"><div><h3>Top Customer Issues</h3><p>Frequently detected complaint categories</p></div></div>
+            <div id="issueRows"></div>
+          </article>
+        </section>
+
+        <!-- Product performance -->
+        <section class="card table-card full-section" id="products">
+          <div class="section-head">
+            <div><h3>Product Performance</h3><p>Compare customer feedback across products</p></div>
+          </div>
+          <div class="table-toolbar">
+            <div class="search-wrap">
+              <i class="fa-solid fa-magnifying-glass"></i>
+              <input class="control" id="productSearch" placeholder="Search products">
+            </div>
+            <small style="color:var(--muted)">Click a column heading to sort</small>
+          </div>
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th data-sort="name">Product</th>
+                  <th data-sort="platform">Platform</th>
+                  <th data-sort="reviews">Reviews</th>
+                  <th data-sort="rating">Average Rating</th>
+                  <th data-sort="positive">Positive Sentiment</th>
+                  <th data-sort="negative">Negative Reviews</th>
+                  <th data-sort="trend">Trend</th>
+                  <th data-sort="status">Status</th>
+                  <th>Action</th>
+                </tr>
+              </thead>
+              <tbody id="productTableBody"></tbody>
+            </table>
+          </div>
+        </section>
+
+        <!-- Urgent reviews -->
+        <section class="card urgent-card full-section" id="urgent">
+          <div class="section-head">
+            <div><h3>Urgent Reviews</h3><p>Reviews that require immediate action</p></div>
+            <div class="review-filterbar" id="reviewTabs">
+              <button class="tab-btn active" data-filter="all">All</button>
+              <button class="tab-btn" data-filter="positive">Positive</button>
+              <button class="tab-btn" data-filter="neutral">Neutral</button>
+              <button class="tab-btn" data-filter="negative">Negative</button>
+              <button class="tab-btn" data-filter="urgent">Urgent</button>
+            </div>
+          </div>
+          <div class="reviews-grid" id="reviewsGrid"></div>
+        </section>
+
+        <!-- AI recommendations -->
+        <section class="card recommendations-card full-section" id="recommendations">
+          <div class="section-head"><div><h3>AI Recommended Actions</h3><p>Prioritized next steps based on customer feedback</p></div></div>
+          <div class="recommendation-grid" id="recommendationGrid"></div>
+        </section>
+
+        <!-- Activity and integrations -->
+        <section class="bottom-grid">
+          <article class="card activity-card" id="activity">
+            <div class="section-head"><div><h3>Recent Review Activity</h3><p>Latest platform and team updates</p></div></div>
+            <div class="timeline" id="activityTimeline"></div>
+          </article>
+
+          <article class="card integrations-card" id="integrations">
+            <div class="section-head">
+              <div><h3>Integration Status</h3><p>Connected ecommerce platforms</p></div>
+              <button class="btn btn-primary btn-sm" id="addPlatformBtn"><i class="fa-solid fa-plus"></i> Add Platform</button>
+            </div>
+            <div class="integration-grid" id="integrationGrid"></div>
+          </article>
+        </section>
+      </div>
+    </main>
+  </div>
+
+  <!-- Shared overlay -->
+  <div class="overlay" id="overlay"></div>
+
+  <!-- AI response modal -->
+  <div class="modal" id="aiModal" role="dialog" aria-modal="true">
+    <div class="modal-head">
+      <div><strong>Generate AI Response</strong><div style="font-size:11px;color:var(--muted);margin-top:3px;">Review and edit before sending</div></div>
+      <button class="icon-btn" id="closeModal"><i class="fa-solid fa-xmark"></i></button>
+    </div>
+    <div class="modal-body">
+      <label style="font-size:11px;font-weight:800;">ORIGINAL CUSTOMER REVIEW</label>
+      <div class="quote-box" id="modalReviewText"></div>
+      <label style="font-size:11px;font-weight:800;">RESPONSE TONE</label>
+      <div class="tone-grid" id="toneGrid">
+        <button class="tone-btn active" data-tone="empathetic">Empathetic</button>
+        <button class="tone-btn" data-tone="professional">Professional</button>
+        <button class="tone-btn" data-tone="friendly">Friendly</button>
+      </div>
+      <label style="font-size:11px;font-weight:800;">AI-GENERATED RESPONSE</label>
+      <textarea id="aiResponse"></textarea>
+    </div>
+    <div class="modal-footer">
+      <button class="btn btn-secondary" id="regenerateBtn"><i class="fa-solid fa-rotate"></i> Regenerate</button>
+      <button class="btn btn-secondary" id="copyBtn"><i class="fa-regular fa-copy"></i> Copy Response</button>
+      <button class="btn btn-primary" id="sendReplyBtn"><i class="fa-regular fa-paper-plane"></i> Send Reply</button>
+    </div>
+  </div>
+
+  <!-- Details drawer -->
+  <aside class="drawer" id="detailsDrawer">
+    <button class="icon-btn" id="closeDrawer" style="float:right"><i class="fa-solid fa-xmark"></i></button>
+    <h3>Detailed AI Insights</h3>
+    <p><strong>Primary risk:</strong> Wireless Earbuds X1 received 38% more one-star reviews, mostly linked to damaged packaging and charging case defects.</p>
+    <p><strong>Regional insight:</strong> Delivery delays are concentrated in North India and increased after June 8.</p>
+    <p><strong>Opportunity:</strong> Positive reviews consistently praise sound quality and battery life. These themes can be reused in product messaging.</p>
+    <button class="btn btn-primary" id="drawerAction">Create action plan</button>
+  </aside>
+
+  <div class="toast" id="toast">Action completed successfully.</div>
+  <script src="script.js"></script>
+</body>
+</html>
