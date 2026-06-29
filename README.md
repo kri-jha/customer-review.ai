@@ -23,8 +23,6 @@ Manually reading and managing these reviews is difficult because:
 
 ReviewPulse AI provides a centralized review management and customer feedback intelligence platform.
 
-The dashboard helps Brand Owners:
-
 * Monitor reviews from multiple Ecommerce platforms
 * Identify positive, neutral, and negative sentiment
 * Detect recurring customer complaints
